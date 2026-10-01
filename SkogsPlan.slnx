@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SkogsPlan.Api.Tests/SkogsPlan.Api.Tests.csproj" />
+  <Project Path="SkogsPlan.Api/SkogsPlan.Api.csproj" />
+</Solution>
