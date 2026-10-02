@@ -40,6 +40,15 @@ const deleteForestArea = async (id: number) => {
     fetchForestAreas();
   }
 };
+const deleteForestActivity = async (id: number) => {
+  const response = await fetch(`${API_BASE_URL}/ForestActivities/${id}`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    fetchForestAreas();
+  }
+};
 
   useEffect(() => {
   fetchForestAreas();
@@ -81,6 +90,12 @@ const deleteForestArea = async (id: number) => {
         <p>Status: {activity.status}</p>
         <p>Datum: {new Date(activity.plannedDate).toLocaleDateString("sv-SE")}</p>
         {activity.notes && <p>{activity.notes}</p>}
+        <button
+  className="delete-button"
+  onClick={() => deleteForestActivity(activity.id)}
+>
+  Ta bort aktivitet
+</button>
       </div>
     ))}
   </div>
@@ -101,6 +116,7 @@ const deleteForestArea = async (id: number) => {
         <button
           className="delete-button"
           onClick={() => deleteForestArea(area.id)}
+          
         >
           Ta bort
         </button>
