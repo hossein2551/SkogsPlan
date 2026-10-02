@@ -35,8 +35,11 @@ const handleSubmit = async (e: React.FormEvent) => {
   }
 };
   return (
+  <div className="form-card">
+    <h2>Lägg till skogsområde</h2>
+
     <form onSubmit={handleSubmit}>
-      <h2>Lägg till skogsområde</h2>
+      
       <input
         type="text"
         placeholder="Namn"
@@ -61,8 +64,11 @@ const handleSubmit = async (e: React.FormEvent) => {
         value={plantingYear}
         onChange={(e) => setPlantingYear(e.target.value)}
       />
-      <button type="submit">Lägg till</button>
+      <button type="submit" className="primary-button">
+  Lägg till
+</button>
     </form>
+    </div>
   );
 }
 export default ForestAreaForm;
