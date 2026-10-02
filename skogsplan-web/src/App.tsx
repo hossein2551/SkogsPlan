@@ -4,6 +4,7 @@ import ForestAreaForm from "./ForestAreaForm";
 import EditForestAreaForm from "./EditForestAreaForm";
 import "./App.css";
 import ForestActivityForm from "./ForestActivityForm";
+import EditForestActivityForm from "./EditForestActivityForm";
 type ForestActivity = {
   id: number;
   type: string;
@@ -24,6 +25,8 @@ type ForestArea = {
 function App() {
   const [forestAreas, setForestAreas] = useState<ForestArea[]>([]);
    const [editingArea, setEditingArea] = useState<ForestArea | null>(null);
+   const [editingActivity, setEditingActivity] =
+  useState<ForestActivity | null>(null);
   const fetchForestAreas = () => {
   fetch(`${API_BASE_URL}/ForestAreas`)
     .then((response) => response.json())
@@ -90,6 +93,22 @@ const deleteForestActivity = async (id: number) => {
         <p>Status: {activity.status}</p>
         <p>Datum: {new Date(activity.plannedDate).toLocaleDateString("sv-SE")}</p>
         {activity.notes && <p>{activity.notes}</p>}
+        <button
+  className="edit-button"
+  onClick={() => setEditingActivity(activity)}
+>
+  Redigera aktivitet
+</button>
+{editingActivity?.id === activity.id && (
+  <EditForestActivityForm
+    activity={editingActivity}
+    onActivityUpdated={() => {
+      setEditingActivity(null);
+      fetchForestAreas();
+    }}
+    onCancel={() => setEditingActivity(null)}
+  />
+)}
         <button
   className="delete-button"
   onClick={() => deleteForestActivity(activity.id)}
