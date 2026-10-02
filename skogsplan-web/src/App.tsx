@@ -5,6 +5,7 @@ import EditForestAreaForm from "./EditForestAreaForm";
 import "./App.css";
 import ForestActivityForm from "./ForestActivityForm";
 import EditForestActivityForm from "./EditForestActivityForm";
+import Dashboard from "./Dashboard";
 type ForestActivity = {
   id: number;
   type: string;
@@ -63,7 +64,7 @@ const deleteForestActivity = async (id: number) => {
     <h1>SkogsPlan</h1>
     <p>Planera och hantera dina skogsområden</p>
   </div>
-
+<Dashboard forestAreas={forestAreas} />
   <h2 className="section-title">Skogsområden</h2>
       <ForestAreaForm onAreaCreated={fetchForestAreas} />
       {editingArea && (

@@ -105,7 +105,6 @@ button:hover {
 .delete-button {
   background: #f7e5e5;
 }
-
 @media (max-width: 700px) {
   #root {
     padding: 25px 15px;
@@ -119,4 +118,36 @@ button:hover {
   .header h1 {
     font-size: 34px;
   }
+}
+
+.dashboard {
+  margin: 40px 0;
+}
+
+.dashboard > h2 {
+  margin-bottom: 20px;
+}
+
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.dashboard-card {
+  background: white;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-card h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+.dashboard-card p {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
 }
