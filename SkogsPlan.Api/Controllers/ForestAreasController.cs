@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SkogsPlan.Api.Data;
+using SkogsPlan.Api.DTOs;
 using SkogsPlan.Api.Models;
 
 namespace SkogsPlan.Api.Controllers;
@@ -26,15 +27,22 @@ public class ForestAreasController : ControllerBase
         return Ok(forestAreas);
     }
 
-    [HttpPost]
-    public async Task<ActionResult<ForestArea>> CreateForestArea(ForestArea forestArea)
+   [HttpPost]
+public async Task<ActionResult<ForestArea>> CreateForestArea(CreateForestAreaDto dto)
+{
+    var forestArea = new ForestArea
     {
-        _context.ForestAreas.Add(forestArea);
-        await _context.SaveChangesAsync();
+        Name = dto.Name,
+        AreaHectares = dto.AreaHectares,
+        TreeSpecies = dto.TreeSpecies,
+        PlantingYear = dto.PlantingYear
+    };
 
-        return Ok(forestArea);
-    }
-    [HttpGet("{id}")]
+    _context.ForestAreas.Add(forestArea);
+    await _context.SaveChangesAsync();
+
+    return Ok(forestArea);
+}
 public async Task<ActionResult<ForestArea>> GetForestArea(int id)
 {
     var forestArea = await _context.ForestAreas
@@ -52,7 +60,7 @@ public async Task<ActionResult<ForestArea>> GetForestArea(int id)
     [HttpPut("{id}")]
 
     
-public async Task<IActionResult> UpdateForestArea(int id, ForestArea updatedArea)
+public async Task<IActionResult> UpdateForestArea(int id, UpdateForestAreaDto updatedArea)
 {
     var forestArea = await _context.ForestAreas.FindAsync(id);
 

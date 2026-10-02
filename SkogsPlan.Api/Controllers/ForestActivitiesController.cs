@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SkogsPlan.Api.Data;
+using SkogsPlan.Api.DTOs;
 using SkogsPlan.Api.Models;
 
 namespace SkogsPlan.Api.Controllers;
@@ -24,15 +25,24 @@ public class ForestActivitiesController : ControllerBase
         return Ok(activities);
     }
     [HttpPost]
-public async Task<ActionResult<ForestActivity>> CreateForestActivity(ForestActivity activity)
+public async Task<ActionResult<ForestActivity>> CreateForestActivity(CreateForestActivityDto dto)
 {
     var forestAreaExists = await _context.ForestAreas
-        .AnyAsync(area => area.Id == activity.ForestAreaId);
+        .AnyAsync(area => area.Id == dto.ForestAreaId);
 
     if (!forestAreaExists)
     {
         return BadRequest("Forest area does not exist.");
     }
+
+    var activity = new ForestActivity
+    {
+        Type = dto.Type,
+        PlannedDate = dto.PlannedDate,
+        Status = dto.Status,
+        Notes = dto.Notes,
+        ForestAreaId = dto.ForestAreaId
+    };
 
     _context.ForestActivities.Add(activity);
     await _context.SaveChangesAsync();
@@ -52,7 +62,7 @@ public async Task<ActionResult<ForestActivity>> GetForestActivity(int id)
     return Ok(activity);
 }
 [HttpPut("{id}")]
-public async Task<IActionResult> UpdateForestActivity(int id, ForestActivity updatedActivity)
+public async Task<IActionResult> UpdateForestActivity(int id, UpdateForestActivityDto updatedActivity)
 {
     var activity = await _context.ForestActivities.FindAsync(id);
 
