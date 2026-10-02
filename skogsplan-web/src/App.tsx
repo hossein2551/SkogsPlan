@@ -3,6 +3,7 @@ import { API_BASE_URL } from "./api";
 import ForestAreaForm from "./ForestAreaForm";
 import EditForestAreaForm from "./EditForestAreaForm";
 import "./App.css";
+import ForestMap from "./ForestMap";
 import ForestActivityForm from "./ForestActivityForm";
 import EditForestActivityForm from "./EditForestActivityForm";
 import Dashboard from "./Dashboard";
@@ -15,6 +16,8 @@ type ForestActivity = {
   forestAreaId: number;
 };
 type ForestArea = {
+  latitude: number;
+longitude: number;
   id: number;
   name: string;
   areaHectares: number;
@@ -65,6 +68,7 @@ const deleteForestActivity = async (id: number) => {
     <p>Planera och hantera dina skogsområden</p>
   </div>
 <Dashboard forestAreas={forestAreas} />
+<ForestMap forestAreas={forestAreas} />
   <h2 className="section-title">Skogsområden</h2>
       <ForestAreaForm onAreaCreated={fetchForestAreas} />
       {editingArea && (

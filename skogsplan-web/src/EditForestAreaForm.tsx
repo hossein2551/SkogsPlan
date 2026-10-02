@@ -7,6 +7,8 @@ type ForestArea = {
   areaHectares: number;
   treeSpecies: string;
   plantingYear: number;
+  latitude: number;
+longitude: number;
 };
 
 type EditForestAreaFormProps = {
@@ -24,16 +26,19 @@ function EditForestAreaForm({
   const [areaHectares, setAreaHectares] = useState(area.areaHectares);
   const [treeSpecies, setTreeSpecies] = useState(area.treeSpecies);
   const [plantingYear, setPlantingYear] = useState(area.plantingYear);
+  const [latitude, setLatitude] = useState(area.latitude);
+const [longitude, setLongitude] = useState(area.longitude);
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
-  const updatedForestArea = {
-    name,
-    areaHectares,
-    treeSpecies,
-    plantingYear,
-  };
-
+  const updatedArea = {
+  name,
+  areaHectares: Number(areaHectares),
+  treeSpecies,
+  plantingYear: Number(plantingYear),
+  latitude: Number(latitude),
+  longitude: Number(longitude),
+};
   const response = await fetch(
     `${API_BASE_URL}/ForestAreas/${area.id}`,
     {
@@ -41,10 +46,9 @@ const handleSubmit = async (e: React.FormEvent) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(updatedForestArea),
+      body: JSON.stringify(updatedArea),
     }
   );
-
   if (response.ok) {
     onAreaUpdated();
   }
@@ -71,14 +75,28 @@ const handleSubmit = async (e: React.FormEvent) => {
         type="number"
         value={plantingYear}
         onChange={(e) => setPlantingYear(Number(e.target.value))}
+        
       />
+      <input
+  type="number"
+  step="any"
+  placeholder="Latitud"
+  value={latitude}
+  onChange={(e) => setLatitude(Number(e.target.value))}
+/>
+<input
+  type="number"
+  step="any"
+  placeholder="Longitud"
+  value={longitude}
+  onChange={(e) => setLongitude(Number(e.target.value))}
+/>
       <button type="button" onClick={onCancel}>
         Avbryt
       </button>
     <button type="submit">
   Spara
 </button>
-
 </form>
   );
 }

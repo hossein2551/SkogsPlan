@@ -151,3 +151,10 @@ button:hover {
   font-size: 28px;
   font-weight: 700;
 }
+.leaflet-container {
+  height: 400px !important;
+  width: 100% !important;
+  position: relative !important;
+  z-index: 0;
+  overflow: hidden !important;
+}

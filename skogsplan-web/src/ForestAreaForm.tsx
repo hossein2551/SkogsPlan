@@ -9,14 +9,17 @@ function ForestAreaForm({ onAreaCreated }: ForestAreaFormProps) {
   const [areaHectares, setAreaHectares] = useState("");
   const [treeSpecies, setTreeSpecies] = useState("");
   const [plantingYear, setPlantingYear] = useState("");
-
-const handleSubmit = async (e: React.FormEvent) => {
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+  const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   const newForestArea = {
     name,
     areaHectares: Number(areaHectares),
     treeSpecies,
     plantingYear: Number(plantingYear),
+    latitude: Number(latitude),
+longitude: Number(longitude),
   };
   const response = await fetch(`${API_BASE_URL}/ForestAreas`, {
     method: "POST",
@@ -31,6 +34,8 @@ const handleSubmit = async (e: React.FormEvent) => {
     setAreaHectares("");
     setTreeSpecies("");
     setPlantingYear("");
+    setLatitude("");
+setLongitude("");
     alert("Skogsområdet har lagts till!");
   }
 };
@@ -58,12 +63,30 @@ const handleSubmit = async (e: React.FormEvent) => {
         value={treeSpecies}
         onChange={(e) => setTreeSpecies(e.target.value)}
       />
-      <input
-        type="number"
-        placeholder="Planteringsår"
-        value={plantingYear}
-        onChange={(e) => setPlantingYear(e.target.value)}
-      />
+     <input
+  type="number"
+  placeholder="Planteringsår"
+  value={plantingYear}
+  onChange={(e) => setPlantingYear(e.target.value)}
+  required
+/>
+
+<input
+  type="number"
+  step="any"
+  placeholder="Latitud"
+  value={latitude}
+  onChange={(e) => setLatitude(e.target.value)}
+  required
+/>
+<input
+  type="number"
+  step="any"
+  placeholder="Longitud"
+  value={longitude}
+  onChange={(e) => setLongitude(e.target.value)}
+  required
+/>
       <button type="submit" className="primary-button">
   Lägg till
 </button>
