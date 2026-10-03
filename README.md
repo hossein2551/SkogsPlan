@@ -53,3 +53,18 @@ Projektet innehåller automatiserade backendtester med xUnit.
 - 3 tester
 - 3 godkända
 - 0 misslyckade
+
+
+## Skärmbilder
+
+### Dashboard och karta
+
+![SkogsPlan dashboard och karta](docs/skogsplan-dashboard.png)
+
+### Väder och formulär
+
+![SkogsPlan väder och formulär](docs/skogsplan-weather-form.png)
+
+### Skogsområde och aktiviteter
+
+![SkogsPlan skogsområde och aktiviteter](docs/skogsplan-area.png)
