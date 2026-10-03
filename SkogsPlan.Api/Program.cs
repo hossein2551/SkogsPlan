@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Controllers
 builder.Services.AddControllers();
+builder.Services.AddHttpClient();
 
 // OpenAPI
 builder.Services.AddOpenApi();

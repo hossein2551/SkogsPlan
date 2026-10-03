@@ -16,5 +16,11 @@ public class UpdateForestAreaDto
     public string TreeSpecies { get; set; } = string.Empty;
 
     [Range(1800, 2100)]
+ 
     public int PlantingYear { get; set; }
+    [Range(-90, 90)]
+    public double Latitude { get; set; }
+
+  [Range(-180, 180)]
+  public double Longitude { get; set; }
 }

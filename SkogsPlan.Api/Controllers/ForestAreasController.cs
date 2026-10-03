@@ -31,12 +31,14 @@ public class ForestAreasController : ControllerBase
 public async Task<ActionResult<ForestArea>> CreateForestArea(CreateForestAreaDto dto)
 {
     var forestArea = new ForestArea
-    {
-        Name = dto.Name,
-        AreaHectares = dto.AreaHectares,
-        TreeSpecies = dto.TreeSpecies,
-        PlantingYear = dto.PlantingYear
-    };
+{
+    Name = dto.Name,
+    AreaHectares = dto.AreaHectares,
+    TreeSpecies = dto.TreeSpecies,
+    PlantingYear = dto.PlantingYear,
+    Latitude = dto.Latitude,
+    Longitude = dto.Longitude
+};
 
     _context.ForestAreas.Add(forestArea);
     await _context.SaveChangesAsync();
@@ -73,7 +75,8 @@ public async Task<IActionResult> UpdateForestArea(int id, UpdateForestAreaDto up
     forestArea.AreaHectares = updatedArea.AreaHectares;
     forestArea.TreeSpecies = updatedArea.TreeSpecies;
     forestArea.PlantingYear = updatedArea.PlantingYear;
-
+forestArea.Latitude = updatedArea.Latitude;
+forestArea.Longitude = updatedArea.Longitude;
     await _context.SaveChangesAsync();
 
     return NoContent();
