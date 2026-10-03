@@ -4,9 +4,7 @@ using SkogsPlan.Api.Controllers;
 using SkogsPlan.Api.Data;
 using SkogsPlan.Api.DTOs;
 using SkogsPlan.Api.Models;
-
 namespace SkogsPlan.Api.Tests;
-
 public class ForestAreasControllerTests
 {
     [Fact]
@@ -16,27 +14,25 @@ public class ForestAreasControllerTests
         var options = new DbContextOptionsBuilder<AppDbContext>()
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
-
         using var context = new AppDbContext(options);
         var controller = new ForestAreasController(context);
-
         var dto = new CreateForestAreaDto
         {
             Name = "Testskogen",
             AreaHectares = 25.5,
             TreeSpecies = "Gran",
-            PlantingYear = 2020
+            PlantingYear = 2020,
+            Latitude = 56.6634,
+            Longitude = 16.3568
         };
-
-        
         var result = await controller.CreateForestArea(dto);
-
         var savedArea = await context.ForestAreas.FirstOrDefaultAsync();
-
         Assert.NotNull(savedArea);
         Assert.Equal("Testskogen", savedArea.Name);
         Assert.Equal(25.5, savedArea.AreaHectares);
         Assert.Equal("Gran", savedArea.TreeSpecies);
         Assert.Equal(2020, savedArea.PlantingYear);
+        Assert.Equal(56.6634, savedArea.Latitude);
+        Assert.Equal(16.3568, savedArea.Longitude);
     }
 }
