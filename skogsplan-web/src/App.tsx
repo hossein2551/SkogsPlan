@@ -4,6 +4,7 @@ import ForestAreaForm from "./ForestAreaForm";
 import EditForestAreaForm from "./EditForestAreaForm";
 import "./App.css";
 import ForestMap from "./ForestMap";
+import WeatherCard from "./WeatherCard";
 import ForestActivityForm from "./ForestActivityForm";
 import EditForestActivityForm from "./EditForestActivityForm";
 import Dashboard from "./Dashboard";
@@ -69,6 +70,15 @@ const deleteForestActivity = async (id: number) => {
   </div>
 <Dashboard forestAreas={forestAreas} />
 <ForestMap forestAreas={forestAreas} />
+{forestAreas
+  .filter((area) => area.latitude !== 0 && area.longitude !== 0)
+  .map((area) => (
+    <WeatherCard
+      key={area.id}
+      latitude={area.latitude}
+      longitude={area.longitude}
+    />
+  ))}
   <h2 className="section-title">Skogsområden</h2>
       <ForestAreaForm onAreaCreated={fetchForestAreas} />
       {editingArea && (

@@ -158,3 +158,21 @@ button:hover {
   z-index: 0;
   overflow: hidden !important;
 }
+.weather-card {
+  background: white;
+  padding: 24px;
+  margin: 24px 0 35px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.weather-card h3 {
+  margin-top: 0;
+  margin-bottom: 18px;
+  font-size: 22px;
+}
+
+.weather-card p {
+  margin: 12px 0;
+  font-size: 17px;
+}
