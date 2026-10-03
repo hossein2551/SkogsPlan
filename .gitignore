@@ -1,0 +1,20 @@
+# .NET
+bin/
+obj/
+
+# Node / React
+node_modules/
+dist/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# IDE
+.vs/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
