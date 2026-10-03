@@ -15,8 +15,10 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp", policy =>
     {
         policy
-            .WithOrigins("http://localhost:5173")
-            .AllowAnyHeader()
+.WithOrigins(
+    "http://localhost:5173",
+    "https://hossein2551.github.io"
+)            .AllowAnyHeader()
             .AllowAnyMethod();
     });
 });
