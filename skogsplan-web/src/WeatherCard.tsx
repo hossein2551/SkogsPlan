@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "./api";
 type WeatherCardProps = {
   latitude: number;
   longitude: number;
@@ -15,8 +16,8 @@ function WeatherCard({ latitude, longitude }: WeatherCardProps) {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   useEffect(() => {
   fetch(
-    `http://localhost:5238/api/Weather?latitude=${latitude}&longitude=${longitude}`
-  )
+  `${API_BASE_URL}/Weather?latitude=${latitude}&longitude=${longitude}`
+)
     .then((response) => response.json())
     .then((data: WeatherData) => setWeather(data));
 }, [latitude, longitude]);

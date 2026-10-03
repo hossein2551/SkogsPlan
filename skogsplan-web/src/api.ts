@@ -1,1 +1,1 @@
-export const API_BASE_URL = "http://localhost:5238/api";
+export const API_BASE_URL = "https://skogsplan-api.azurewebsites.net/api";
