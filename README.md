@@ -54,6 +54,18 @@ Projektet innehåller automatiserade backendtester med xUnit.
 - 3 godkända
 - 0 misslyckade
 
+### Continuous Integration
+
+Projektet använder GitHub Actions för automatisk kvalitetssäkring.
+
+Vid push eller pull request till `main` körs automatiskt:
+
+- Restore och build av .NET-backend
+- Automatiserade xUnit-tester
+- Installation av frontend-beroenden
+- Build av React/TypeScript-frontend
+
+Det säkerställer att både backend och frontend kan byggas och att testerna passerar innan nya ändringar integreras.
 
 ## Skärmbilder
 
